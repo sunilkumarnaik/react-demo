@@ -1,0 +1,76 @@
+.card-container {
+    margin: 1rem;
+}
+
+.restaurant-detl > img{
+ width: 16rem;
+}
+
+.restaurant-rating-section {
+    display: flex;
+    column-gap: 1.5rem;
+}
+
+.restaurant-name {
+    font-weight: bold;
+}
+.cuisines{
+    color:#93959E;
+    font-size: 14px;
+}
+
+.time {
+    color:#93959E;
+    font-size: 14px;
+}
+
+.cost {
+    color:#93959E;
+    font-size: 14px;
+}
+
+.rating {
+    width: 2.3rem;
+    text-align: center;
+}
+
+.rating-green {
+    border: 1px solid #48C479;
+    background-color: #48C479;
+    color: #ffffff;
+}
+
+.rating-orange {
+    border: 1px solid #DB7C38;
+    background-color: #DB7C38;
+    color: #ffffff;
+}
+
+.rating-yellow {
+    border: 1px solid #E1B055;
+    background-color: #E1B055;
+    color: #ffffff;
+}
+
+.margin-1rem {
+    margin-top: .7rem;
+}
+
+.restaurant-card-container{
+    height: 20rem;
+    width: 18rem;
+    cursor: pointer;
+}
+
+.restaurant-card-container:hover{
+    border: 1px solid #888888d7;
+    box-shadow: 1px 1px #93959e6e;
+    margin: -1px;
+}
+
+.all-restaurant-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
