@@ -13,6 +13,9 @@
 
 .restaurant-name {
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .cuisines{
     color:#93959E;
@@ -30,8 +33,14 @@
 }
 
 .rating {
-    width: 2.3rem;
+    width: 2.6rem;
     text-align: center;
+    display: flex;
+}
+
+.star-icon{
+    font-size: 10px;
+    margin: .2rem;
 }
 
 .rating-green {
@@ -73,4 +82,29 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+}
+
+.quick-view {
+   text-align: center;
+   margin: .5rem;
+   color: #0074ff;
+}
+
+.filter-container {
+    display: flex;
+    height: 2.5rem;
+    align-items: center;
+    border-bottom: 1px solid #aba9a9;
+    margin-bottom: 10px;
+}
+
+.filters-section{
+    margin-left: auto;
+}
+
+.search-box{
+    width: 16rem;
+    height: 1.3rem;
+    border-radius: 20px;
+    padding-left: 10px;
 }
