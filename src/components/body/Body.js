@@ -1,13 +1,22 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/body.css";
 import { restaurantData } from "../../utils/consants";
-function Body() {
-  let [resData, setResData] = useState(restaurantData[0]?.data?.data?.cards);
-  let [restaurantsData] = useState(restaurantData[0]?.data?.data?.cards);
+import { baseUrl } from "../../utils/consants";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
+function Body() {
+  console.log("Body");
+  let [resData, setResData] = useState([]);
+  let [restaurantsData, setRestaurantsData] = useState([]);
   let [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    console.log("Inside useEffect");
+    getRestaurantData();
+  }, []);
 
   let filterTopRatedRestaurant = () => {
     let topRatedRestaurant = restaurantsData.filter(
@@ -27,6 +36,24 @@ function Body() {
     setResData(filteredData);
 
     console.log(resData);
+  };
+
+  const getRestaurantData = () => {
+    console.log("Inside getRestaurant Data");
+    /* fetch(baseUrl)
+      .then((resp) => resp.json())
+      .then((respData) => {
+        console.log(respData?.data?.cards[2]?.data?.data?.cards);
+        setResData(respData?.data?.cards[2]?.data?.data?.cards);
+        setRestaurantsData(respData?.data?.cards[2]?.data?.data?.cards);
+      }); */
+    axios.get(baseUrl).then((response) => {
+      setResData(response?.data?.data?.cards[2]?.data?.data?.cards);
+      setRestaurantsData(response?.data?.data?.cards[2]?.data?.data?.cards);
+      // console.log(JSON.parse(response?.data)?.data?.cards);
+      // setResData(response?.data?.data?.cards);
+      // setRestaurantsData(response?.data?.data?.cards);
+    });
   };
 
   return (
@@ -57,7 +84,11 @@ function Body() {
       <Card {...resData[7]} />
       <Card {...resData[8]} /> */}
         {resData.map((restaurant) => {
-          return <Card {...restaurant} />;
+          return (
+            <Link to={"/restaurant/" + restaurant.data.id}>
+              <Card {...restaurant} key={restaurant.data.id} />
+            </Link>
+          );
         })}
       </div>
     </>

@@ -25,3 +25,9 @@ ul > li {
     font-weight: 1000;
     cursor: pointer;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+

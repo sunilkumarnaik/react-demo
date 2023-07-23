@@ -1587,3 +1587,10 @@ export const restaurantData = [
     parentWidget: false,
   },
 ];
+
+export const baseUrl =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.2568819&lng=85.7791854&page_type=DESKTOP_WEB_LISTING";
+// export const baseUrl = "http://localhost:8080/data";
+
+export const MENU_URL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=20.2568819&lng=85.7791854&restaurantId=";
