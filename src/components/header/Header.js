@@ -20,8 +20,13 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>SignIn</li>
-          <li>Cart</li>
+
+          <li>
+            <Link to="/signin">SignIn</Link>
+          </li>
+          <li>
+            <Link to="/kart">Cart</Link>
+          </li>
         </ul>
       </div>
     </div>

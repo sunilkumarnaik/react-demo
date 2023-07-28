@@ -90,8 +90,8 @@
 }
 
 .veg-or-nonveg{
-    height: 15px;
-    width: 15px;
+    height: 16px;
+    width: 16px;
     border: 1px solid; 
     display: flex;
     align-items: center;
@@ -129,4 +129,42 @@
 .item-desc{
     margin-bottom: 10px;
     color: #bbb5b5;
+}
+
+.time-distance-details {
+    display: flex;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.time-details {
+
+}
+
+.distance-details {
+    margin-left: 12px;
+    vertical-align: middle;
+    margin-top: -4px;
+    display: flex;
+}
+
+.ruppe-icon-menu{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    height: 14px;
+    width: 14px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.cost-for-two{
+    margin-left: 7px;
+}
+
+.menu-items-right{
+    display: flex;
+    flex-direction: column;
 }

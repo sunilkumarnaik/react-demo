@@ -1,11 +1,12 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../css/body.css";
 import { restaurantData } from "../../utils/consants";
 import { baseUrl } from "../../utils/consants";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 function Body() {
   console.log("Body");
@@ -20,7 +21,7 @@ function Body() {
 
   let filterTopRatedRestaurant = () => {
     let topRatedRestaurant = restaurantsData.filter(
-      (restaurant) => restaurant.data.avgRating >= 4
+      (restaurant) => restaurant.info.avgRating >= 4
     );
     setResData(topRatedRestaurant);
   };
@@ -31,7 +32,7 @@ function Body() {
     setSearchText(val);
 
     let filteredData = restaurantsData.filter((restaurant) =>
-      restaurant.data.name.toLowerCase().includes(val.toLowerCase())
+      restaurant.info.name.toLowerCase().includes(val.toLowerCase())
     );
     setResData(filteredData);
 
@@ -48,8 +49,14 @@ function Body() {
         setRestaurantsData(respData?.data?.cards[2]?.data?.data?.cards);
       }); */
     axios.get(baseUrl).then((response) => {
-      setResData(response?.data?.data?.cards[2]?.data?.data?.cards);
-      setRestaurantsData(response?.data?.data?.cards[2]?.data?.data?.cards);
+      setResData(
+        response?.data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setRestaurantsData(
+        response?.data?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
       // console.log(JSON.parse(response?.data)?.data?.cards);
       // setResData(response?.data?.data?.cards);
       // setRestaurantsData(response?.data?.data?.cards);
@@ -85,8 +92,8 @@ function Body() {
       <Card {...resData[8]} /> */}
         {resData.map((restaurant) => {
           return (
-            <Link to={"/restaurant/" + restaurant.data.id}>
-              <Card {...restaurant} key={restaurant.data.id} />
+            <Link to={"/restaurant/" + restaurant.info.id}>
+              <Card {...restaurant} key={restaurant.info.id} />
             </Link>
           );
         })}
@@ -108,7 +115,7 @@ const Card = (resData) => {
 
   let img =
     "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" +
-    resData.data.cloudinaryImageId;
+    resData.info.cloudinaryImageId;
   return (
     <div
       className="restaurant-card-container"
@@ -119,20 +126,20 @@ const Card = (resData) => {
         <div className="restaurant-detl">
           <img src={img} />
         </div>
-        <div className="restaurant-name margin-1rem" title={resData.data.name}>
-          {resData.data.name}
+        <div className="restaurant-name margin-1rem" title={resData.info.name}>
+          {resData.info.name}
         </div>
         <div className="cuisines margin-1rem">
-          {resData.data.cuisines.join(", ")}
+          {resData.info.cuisines.join(", ")}
         </div>
         <div className="restaurant-rating-section margin-1rem">
           <div
             className={`rating ${
-              resData.data.avgRating >= 4
+              resData.info.avgRating >= 4
                 ? "rating-green"
-                : resData.data.avgRating >= 3
+                : resData.info.avgRating >= 3
                 ? "rating-orange"
-                : resData.data.avgRating >= 2
+                : resData.info.avgRating >= 2
                 ? "rating-yellow"
                 : ""
             }`}
@@ -140,10 +147,10 @@ const Card = (resData) => {
             <div className="star-icon">
               <FontAwesomeIcon icon={faStar} size="sm" />
             </div>
-            {resData.data.avgRating}
+            {resData.info.avgRating}
           </div>
-          <div className="time">{resData.data.slaString}</div>
-          <div className="cost">{resData.data.costForTwoString}</div>
+          <div className="time">{resData.info.slaString}</div>
+          <div className="cost">{resData.info.costForTwoString}</div>
         </div>
         <div className="quick-view">{showQuickText ? <QuickView /> : ""}</div>
       </div>
